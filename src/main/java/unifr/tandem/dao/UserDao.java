@@ -49,6 +49,23 @@ public class UserDao {
                 });
         return user;
     }
+    
+    public boolean findUser(String username)  {
+    	String sql = "select username from USER_PREFERENCES where username = '" + username+"'";
+    	List<String> strLst = jdbcTemplate.query(sql,
+                new RowMapper() {
+					public Object mapRow(ResultSet rs, int rowNum)
+							throws SQLException {
+						return rs.getString(1);
+					}
+                });
+
+		if (strLst.isEmpty()) {
+			return false;
+		} else {
+			return true;
+		} 
+    }
 
     public UserPref getUserPref(String username) {
         UserPref user = jdbcTemplate.queryForObject("select * " +
@@ -72,13 +89,18 @@ public class UserDao {
         return user;
     }
 
-    public void addUser(User user) {
+    public int addUser(User user) {
 
         logger.error("add user " + user.getUsername() + user.getRealname());
 
-            jdbcTemplate.update(
+        try {
+        	jdbcTemplate.update(
                     "insert into USER_PREFERENCES (username, password, realname, email) values (?, ?, ?, ?)",
                     user.getUsername(), user.getPassword(), user.getRealname(), user.getEmail());
+        	return 1;
+        } catch (Exception e) {
+        	return 0;
+        }
 
     }
 

@@ -23,8 +23,8 @@ public class UserService {
         return userDao.getUserCount();
     }
 
-    public void addUser(User user) {
-        userDao.addUser(user);
+    public int addUser(User user) {
+        return userDao.addUser(user);
     }
 
     public User getUser(String username, String password) {
@@ -38,6 +38,10 @@ public class UserService {
         }
     }
 
+    public boolean findUser(String username) {
+    	return userDao.findUser(username);
+    }
+    
     public UserPref getUserPref(String username) {
         return userDao.getUserPref(username);
     }

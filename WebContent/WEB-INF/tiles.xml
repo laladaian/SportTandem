@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+   "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+   "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+   
+<tiles-definitions>
+
+	<definition name="login-success" template="/pages/baseLayout.jsp">  
+	   <put-attribute name="header" value="/pages/tiles/header.jsp"/>    
+	   <put-attribute name="menu" value="/pages/tiles/menu.jsp"/>     
+	   <put-attribute name="body" value="/pages/account.jsp"/>  
+	   <put-attribute name="footer" value="/pages/tiles/footer.jsp"/>     
+	</definition>
+	
+	<definition name="make-friend" template="/pages/baseLayout.jsp">  
+	   <put-attribute name="header" value="/pages/tiles/header.jsp"/>    
+	   <put-attribute name="menu" value="/pages/tiles/menu.jsp"/>     
+	   <put-attribute name="body" value="/pages/makefriend.jsp"/>  
+	   <put-attribute name="footer" value="/pages/tiles/footer.jsp"/>     
+	</definition>
+	
+	<definition name="friends" template="/pages/baseLayout.jsp">  
+	   <put-attribute name="header" value="/pages/tiles/header.jsp"/>    
+	   <put-attribute name="menu" value="/pages/tiles/menu.jsp"/>     
+	   <put-attribute name="body" value="/pages/friends.jsp"/>  
+	   <put-attribute name="footer" value="/pages/tiles/footer.jsp"/>     
+	</definition>
+	
+	<definition name="request-made" template="/pages/baseLayout.jsp">  
+	   <put-attribute name="header" value="/pages/tiles/header.jsp"/>    
+	   <put-attribute name="menu" value="/pages/tiles/menu.jsp"/>     
+	   <put-attribute name="body" value="/pages/requestmade.jsp"/>  
+	   <put-attribute name="footer" value="/pages/tiles/footer.jsp"/>     
+	</definition>
+	
+	<definition name="news" template="/pages/baseLayout.jsp">  
+	   <put-attribute name="header" value="/pages/tiles/header.jsp"/>    
+	   <put-attribute name="menu" value="/pages/tiles/menu.jsp"/>     
+	   <put-attribute name="body" value="/pages/news.jsp"/>  
+	   <put-attribute name="footer" value="/pages/tiles/footer.jsp"/>     
+	</definition>
+	
+	<definition name="contact" template="/pages/baseLayout.jsp">  
+	   <put-attribute name="header" value="/pages/tiles/header.jsp"/>    
+	   <put-attribute name="menu" value="/pages/tiles/menu.jsp"/>     
+	   <put-attribute name="body" value="/pages/contact.jsp"/>  
+	   <put-attribute name="footer" value="/pages/tiles/footer.jsp"/>     
+	</definition>
+	
+	<definition name="message-sent" template="/pages/baseLayout.jsp">  
+	   <put-attribute name="header" value="/pages/tiles/header.jsp"/>    
+	   <put-attribute name="menu" value="/pages/tiles/menu.jsp"/>     
+	   <put-attribute name="body" value="/pages/messagesent.jsp"/>  
+	   <put-attribute name="footer" value="/pages/tiles/footer.jsp"/>     
+	</definition>
+
+</tiles-definitions>

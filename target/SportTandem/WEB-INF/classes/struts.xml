@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+    <constant name="struts.devMode" value="false" />
+
+    <package name="basicstruts2" extends="struts-default">
+
+        <interceptors>
+            <interceptor name="loginInterceptor" class="com.unifr.tandem.interceptor.LoginInterceptor" />
+        </interceptors>
+
+        <global-results>
+            <result name="error">/error.jsp</result>
+        </global-results>
+
+        <action name="index" class="main.unifr.tandem.action.Authentication">
+            <result name="input">/index.jsp</result>
+            <result name="success">/account.jsp</result>
+            <result name="error">error.jsp</result>
+        </action>
+
+        <action name="logout" class="main.unifr.tandem.action.Logout">
+            <result name="success">/index.jsp</result>
+        </action>
+
+        <action name="register" class="main.unifr.tandem.action.Register" method="execute">
+            <result name="input">/register.jsp</result>
+            <result name="success">/account.jsp</result>
+        </action>
+
+        <action name="makeFriend" class="main.unifr.tandem.action.MakeFriend" method="execute">
+            <interceptor-ref name="loginInterceptor" />
+            <result name="requestmade">/requestmade.jsp</result>
+            <result name="success">/makefriend.jsp</result>
+        </action>
+
+        <action name="makeRequest" class="com.unifr.tandem.action.MakeRequest" method="execute">
+            <result name="input">/makefriend.jsp</result>
+            <result name="success" type="redirectAction">makeFriend</result>
+        </action>
+
+        <action name="showAccount" class="com.unifr.tandem.action.ShowAccount" method="execute">
+            <interceptor-ref name="loginInterceptor" />
+            <result name="success">/account.jsp</result>
+        </action>
+
+        <action name="searchFriends" class="main.unifr.tandem.action.SearchFriends" method="execute">
+            <interceptor-ref name="loginInterceptor" />
+            <result name="success">/friends.jsp</result>
+        </action>
+        
+        <action name="news" class="main.unifr.tandem.action.News" method="execute">
+            <interceptor-ref name="loginInterceptor" />
+            <result name="success">/news.jsp</result>
+        </action>
+        
+    </package>
+
+</struts>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+    <constant name="struts.devMode" value="false" />
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+
+    <package name="basicstruts2" namespace="/" extends="struts-default">
+
+		<result-types>
+		    <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+		</result-types>
+
+        <interceptors>
+            <interceptor name="loginInterceptor" class="main.java.unifr.tandem.interceptor.LoginInterceptor" />
+        </interceptors>
+
+        <global-results>
+            <result name="error">/pages/error.jsp</result>
+        </global-results>
+		
+        <action name="index" class="main.java.unifr.tandem.action.Authentication">
+            <interceptor-ref name="loginInterceptor" />
+            <result name="input">/pages/index.jsp</result>
+            <result name="success" type="tiles">login-success</result> 
+            <result name="error">/pages/error.jsp</result>
+        </action>
+
+        <action name="logout" class="main.java.unifr.tandem.action.Logout">
+            <result name="success">/pages/index.jsp</result>
+        </action>
+
+        <action name="register" class="main.java.unifr.tandem.action.Register" method="execute">
+            <result name="input" type="httpheader">
+            	<param name="status">204</param>
+            </result>
+            <result name="success" type="tiles">login-success</result>
+        </action>
+
+        <action name="makeFriend" class="main.java.unifr.tandem.action.MakeFriend" method="execute">
+            <interceptor-ref name="loginInterceptor" />
+            <result name="requestmade" type="tiles">request-made</result>
+            <result name="success" type="tiles">make-friend</result>
+        </action>
+
+        <action name="makeRequest" class="main.java.unifr.tandem.action.MakeRequest" method="execute">
+            <interceptor-ref name="loginInterceptor" />
+            <result name="input">/makefriend.jsp</result>
+            <result name="success" type="redirectAction">makeFriend</result>
+        </action>
+
+        <action name="showAccount" class="main.java.unifr.tandem.action.ShowAccount" method="execute">
+            <interceptor-ref name="loginInterceptor" />
+            <result name="success" type="tiles">login-success</result>
+        </action>
+
+        <action name="searchFriends" class="main.java.unifr.tandem.action.SearchFriends" method="execute">
+            <interceptor-ref name="loginInterceptor" />
+            <result name="success" type="tiles">friends</result>
+        </action>
+        
+        <action name="news" class="main.java.unifr.tandem.action.News" method="execute">
+            <interceptor-ref name="loginInterceptor" />
+            <result name="success" type="tiles">news</result>
+        </action>
+        
+        <action name="contact">
+            <interceptor-ref name="loginInterceptor" />
+            <result name="success" type="tiles">contact</result>
+        </action>
+        
+        <action name="sendEmail" class="main.java.unifr.tandem.action.SendEmail" >
+            <interceptor-ref name="loginInterceptor" />
+            <result name="success" type="tiles">message-sent</result>
+            <result name="error" type="tiles">contact</result>
+        </action>
+        
+    </package>
+
+</struts>

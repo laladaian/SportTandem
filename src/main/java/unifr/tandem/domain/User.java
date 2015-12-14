@@ -102,4 +102,14 @@ public class User {
 	public void setSubscriptions(List<Subscription> subscriptions) {
 		this.subscriptions = subscriptions;
 	}
+
+	@Override
+	public String toString() {
+		return "User [email=" + email + ", password=" + password
+				+ ", realname=" + realname + ", publicvisible=" + publicvisible
+				+ ", datecreated=" + datecreated + ", username=" + username
+				+ ", uri=" + uri + ", partnerships=" + partnerships
+				+ ", subscriptions=" + subscriptions + "]";
+	}
+	
 }

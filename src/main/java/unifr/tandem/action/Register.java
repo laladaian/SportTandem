@@ -49,13 +49,18 @@ public class Register extends ActionSupport {
                     put(User.class, userBean);
         } catch (Exception e) {
             logger.error("Can't put user in Cyber Coach");
+            //return ERROR;
         }
 
         //add user to local db
         ApplicationContext ctx = ApplicationContextProvider.getApplicationContext();
         UserService userService = (UserService)ctx.getBean("userService");
-        userService.addUser(userBean);
-
+        int inserted = userService.addUser(userBean);
+//        if (inserted == 0) {
+//        	addActionError("User already exists!");
+//        	return ERROR;
+//        } 
+        
         HttpServletRequest request = ServletActionContext.getRequest();
         HttpSession session = request.getSession(true);
         session.setAttribute("user", userBean);
@@ -92,6 +97,18 @@ public class Register extends ActionSupport {
         if (userBean.getPassword().length() == 0) {
             addFieldError("userBean.password", "Password is required");
         }
+        if (userBean.getRealname().length() > 0 && userBean.getUsername().length() > 0 && userBean.getPassword().length() > 0) {
+        	 ApplicationContext ctx = ApplicationContextProvider.getApplicationContext();
+             UserService userService = (UserService)ctx.getBean("userService");
+             boolean found = userService.findUser(userBean.getUsername());
+             System.out.println("Found: "+ found);
+             if (found == true) {
+            	 System.out.println("User already exists");
+            	 addActionError("User already exists");
+             } 
+        }
+        System.out.println(userBean.toString());
+        System.out.println("in validate");
 
     }
 
